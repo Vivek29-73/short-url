@@ -1,8 +1,9 @@
-const User= required("../models/user.js");
-const bcrypt=require("bcryptjs");
+const User= require("../models/user.js");
+const bcrypt=require("bcrypt");
+const { asyncHandler } = require("../middleware/errorMiddleware");
 
 const jwt=require("jsonwebtoken");
-const register=async(req,res)=>{
+const register=asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
 
     const existing=await User.findOne({email});
@@ -11,14 +12,14 @@ const register=async(req,res)=>{
 
     const hashed=await bcrypt.hash(password,10);//hashes the pass with 10 salt rounds
 
-    const user=new User({eamil,password:hashed});
+    const user=new User({email,password:hashed});
     await user.save();
 
     res.status(201).json({message:"User Registered succesfully"});
 
-};
+});
 
-const login=async(req,res)=>{
+const login=asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
 
     const user= await User.findOne({email});
@@ -43,11 +44,11 @@ const login=async(req,res)=>{
     });
 
     res.json({message:"login succesfull"});
-};
+});
 
-const logout=(req,res)=>{
+const logout=asyncHandler(async(req,res)=>{
     res.clearCookie("token");
     res.json({message:"Logged out successfully"});
-};
+});
 
 module.exports={register,login,logout};
