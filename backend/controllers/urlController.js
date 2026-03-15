@@ -13,7 +13,6 @@ const createShortUrl=asyncHandler(async(req,res)=>{
 
     if(expiresInDays){
         expiryDate=new Date();
-        console.log(typeof expiresInDays);
         expiryDate.setDate(expiryDate.getDate()+expiresInDays);
     }
         const newUrl=new Url({

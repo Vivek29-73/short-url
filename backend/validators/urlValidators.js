@@ -7,8 +7,8 @@ const validateUrl = [
 
    body("customAlias")
         .optional()
-        .isAlphanumeric()
-        .withMessage("Alias can only contain letters and numbers")
+        .matches(/^[a-zA-Z0-9-]+$/)
+        .withMessage("Alias can only contain letters and numbers and dashes")
         .isLength({ min: 3, max: 20 })
         .withMessage("Alias must be between 3 and 20 characters"),
 

@@ -1,8 +1,8 @@
 const User= require("../models/user.js");
 const bcrypt=require("bcrypt");
 const { asyncHandler } = require("../middleware/errorMiddleware");
-
 const jwt=require("jsonwebtoken");
+
 const register=asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
 
@@ -38,8 +38,8 @@ const login=asyncHandler(async(req,res)=>{
 
     res.cookie("token",token,{
         httpOnly:true,
-        secure:false,
-        sameSite:"lax",
+        secure:process.env.NODE_ENV === "production",
+        sameSite:process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge:7*24*60*60*1000
     });
 
