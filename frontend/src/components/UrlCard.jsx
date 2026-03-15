@@ -1,7 +1,7 @@
 import API from "../api/axios";
 
 function UrlCard({ url, onDelete }) {
-    const shortUrl = `http://localhost:8001/${url.shortId}`;
+    const shortUrl = `${import.meta.env.VITE_API_URL}/${url.shortId}`;
     const isExpired = url.expiresAt && new Date() > new Date(url.expiresAt);
 
     const handleCopy = () => {

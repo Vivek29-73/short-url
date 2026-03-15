@@ -9,13 +9,13 @@ const errorHandler=(err,req,res,next)=>{
 
     const statusCode=err.statusCode || 500;
     res.status(statusCode).json({
-        message:err.messgae || "something went wrong"
+        message:err.message || "something went wrong"
     });
 };
 
 const notFound=(req,res,next)=>{
 
-    const err=new Error(`Route ${req.OriginalUrl} not found`);
+    const err=new Error(`Route ${req.originalUrl} not found`);
     err.statusCode=404;
     next(err);
 };

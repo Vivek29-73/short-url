@@ -23,7 +23,7 @@ const createShortUrl=asyncHandler(async(req,res)=>{
         });
         await newUrl.save();
         res.status(201).json({
-            shortUrl:`http://localhost:8001/${shortId}`
+            shortUrl: `${process.env.BACKEND_URL}/${shortId}`
         });
     
     });
