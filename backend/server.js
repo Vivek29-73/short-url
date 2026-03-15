@@ -19,7 +19,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-
+console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => { console.log("db connected"); })
     .catch((err) => { console.log(err) });
