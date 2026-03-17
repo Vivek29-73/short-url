@@ -71,7 +71,7 @@ const s = {
     },
     orig: {
         fontSize: "12px",
-        color: "#35334a",
+        color: "#393750",
         marginTop: "2px",
         whiteSpace: "nowrap",
         overflow: "hidden",

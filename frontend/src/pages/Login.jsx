@@ -35,7 +35,11 @@ function Login() {
                     Sign in to manage your links and view analytics.
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form 
+                    onSubmit={handleSubmit}
+                    onKeyDown={(e) => { if (e.key === 'Enter') setIsPressed(true) }}
+                    onKeyUp={(e) => { if (e.key === 'Enter') setIsPressed(false) }}
+                >
                     <div style={s.field}>
                         <label style={s.label}>Email</label>
                         <input

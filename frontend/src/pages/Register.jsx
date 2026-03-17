@@ -38,7 +38,11 @@ function Register() {
                     Create an account to start shortening links and tracking clicks.
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form 
+                    onSubmit={handleSubmit}
+                    onKeyDown={(e) => { if (e.key === 'Enter') setIsPressed(true) }}
+                    onKeyUp={(e) => { if (e.key === 'Enter') setIsPressed(false) }}
+                >
                     <div style={s.field}>
                         <label style={s.label}>Email</label>
                         <input
