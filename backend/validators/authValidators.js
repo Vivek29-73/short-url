@@ -3,7 +3,7 @@ const {body,validationResult}=require("express-validator");
 const validateRegister=[
     body("email")
     .isEmail()
-    .withMessage("plaese provide a vlaid email"),
+    .withMessage("please provide a valid mail "),
 
     body("password")
     .isLength({min:6})
