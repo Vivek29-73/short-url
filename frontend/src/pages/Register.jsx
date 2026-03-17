@@ -7,6 +7,7 @@ function Register() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [isPressed, setIsPressed] = useState(false); // Added state for button press
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -60,7 +61,16 @@ function Register() {
                             required
                         />
                     </div>
-                    <button type="submit" style={s.btn}>
+                    <button 
+                        type="submit" 
+                        style={{
+                            ...s.btn, 
+                            transform: isPressed ? "scale(0.96)" : "scale(1)"
+                        }}
+                        onMouseDown={() => setIsPressed(true)}
+                        onMouseUp={() => setIsPressed(false)}
+                        onMouseLeave={() => setIsPressed(false)}
+                    >
                         Create Account
                     </button>
                 </form>
@@ -141,7 +151,8 @@ const s = {
         fontFamily: "Inter, sans-serif",
         fontSize: "13px",
         fontWeight: "600",
-        cursor: "pointer"
+        cursor: "pointer",
+        transition: "transform 0.1s ease" // Smooth transition added here
     },
     error: {
         marginTop: "14px",

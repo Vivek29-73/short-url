@@ -6,6 +6,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isPressed, setIsPressed] = useState(false); // Added state for button press
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -57,7 +58,18 @@ function Login() {
                             required
                         />
                     </div>
-                    <button type="submit" style={s.btn}>Sign In</button>
+                    <button 
+                        type="submit" 
+                        style={{
+                            ...s.btn, 
+                            transform: isPressed ? "scale(0.96)" : "scale(1)"
+                        }}
+                        onMouseDown={() => setIsPressed(true)}
+                        onMouseUp={() => setIsPressed(false)}
+                        onMouseLeave={() => setIsPressed(false)}
+                    >
+                        Sign In
+                    </button>
                 </form>
 
                 {error && <div style={s.error}>{error}</div>}
@@ -135,7 +147,8 @@ const s = {
         fontFamily: "Inter, sans-serif",
         fontSize: "13px",
         fontWeight: "600",
-        cursor: "pointer"
+        cursor: "pointer",
+        transition: "transform 0.1s ease" // Smooth transition added here
     },
     error: {
         marginTop: "14px",
